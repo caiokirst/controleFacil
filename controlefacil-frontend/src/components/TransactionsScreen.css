@@ -1,0 +1,150 @@
+/* Variables */
+:root {
+  --main-bg: linear-gradient(135deg, #f0f4ff, #fff);
+  --card-bg: rgba(255,255,255,0.85);
+  --primary: #2563eb;
+  --primary-dark: #1e3a8a;
+  --text-main: #333;
+  --text-secondary: #6b7280;
+  --border: #d1d5db;
+  --radius: 8px;
+  --shadow-light: rgba(0,0,0,0.05);
+  --shadow-dark: rgba(0,0,0,0.1);
+}
+
+/* Base Styles (Desktop-first) */
+.tf-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--main-bg);
+  min-height: 100vh;
+  color: var(--text-main);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.tf-header {
+  flex: 1 1 100%;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.tf-header h1 { font-size: 2.8rem; color: var(--primary); }
+.tf-header p  { color: var(--primary); margin-top: 8px; }
+
+.tf-card,
+.tf-container > section:last-of-type {
+  flex: 1 1 40%;
+}
+
+/* Cards */
+.tf-card,
+.tf-transaction-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: 0 4px 12px var(--shadow-light);
+  padding: 24px;
+  transition: transform .1s, box-shadow .2s;
+}
+.tf-card { margin-bottom: 0; backdrop-filter: blur(8px); }
+.tf-transaction-card:hover { transform: scale(1.02); box-shadow: 0 8px 24px var(--shadow-dark); }
+
+/* Section titles */
+.tf-section-title {
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+}
+.tf-icon { width: 28px; height: 28px; color: var(--primary); margin-right: 12px; }
+.tf-icon-small { width: 20px; height: 20px; color: var(--text-secondary); margin-right: 6px; }
+
+/* Forms */
+.tf-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap: 20px;
+}
+.tf-form-group { display: flex; flex-direction: column; }
+.tf-form-group label { margin-bottom: 6px; color: var(--text-secondary); }
+.tf-form-group input,
+.tf-form-group select,
+.tf-date-input input {
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+.tf-form-group input:focus,
+.tf-form-group select:focus,
+.tf-date-input input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.2);
+}
+.tf-date-input { position: relative; }
+.tf-date-input input { padding-left: 40px; }
+.tf-date-input .tf-icon-small { position: absolute; top: 50%; left: 12px; transform: translateY(-50%); }
+
+/* Submit button */
+.tf-form-submit {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-top: 10px;
+}
+.tf-form-submit button {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 14px 28px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  transition: background .2s, transform .1s;
+}
+.tf-form-submit button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+/* Transactions grid */
+.tf-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+  gap: 24px;
+}
+.tf-no-data {
+  color: var(--text-secondary);
+  grid-column: 1 / -1;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Transaction card details */
+.tf-transaction-card {
+  justify-content: space-between;
+  align-items: center;
+}
+.tf-date { font-size: .875rem; color: var(--text-secondary); }
+.tf-category { font-size: 1.1rem; font-weight: 600; color: var(--text-main); margin-top: 4px; }
+.tf-amount { font-size: 1.4rem; font-weight: 700; }
+.tf-amount.entrada { color: #16a34a; }
+.tf-amount.saida { color: #dc2626; }
+
+/* Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+  .tf-container { display: block; }
+  .tf-header { margin-bottom: 40px; }
+  .tf-card,
+  .tf-container > section:last-of-type {
+    flex: none;
+    width: 100%;
+    margin-bottom: 48px;
+  }
+  .tf-header h1 { font-size: 2rem; }
+  .tf-form { gap: 16px; }
+  .tf-form-submit button { width: 100%; }
+}
